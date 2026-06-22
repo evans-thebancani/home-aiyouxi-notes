@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杂志专题｜竞彩资讯 · 数据对照 · 延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 杂志首页横幅 */
+        .hero {
+            background: linear-gradient(145deg, #eef1f5 0%, #ffffff 100%);
+            border-radius: 24px;
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255,255,255,0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #0b1a2f;
+            margin-bottom: 0.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #4b5e73;
+            border-left: 3px solid #9aaec2;
+            padding-left: 1rem;
+            margin: 0.3rem 0 0.8rem 0;
+            font-weight: 380;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 640px;
+            color: #2f4057;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            border: 1px solid #e6eaef;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.02);
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02);
+            border-color: #d0d9e3;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #132338;
+            border-bottom: 1px solid #e9edf2;
+            padding-bottom: 0.65rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card-title span {
+            background: #dce3ec;
+            color: #1a2c41;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.1rem 0.7rem;
+            border-radius: 30px;
+            letter-spacing: 0.02em;
+        }
+
+        .card-body {
+            font-size: 1rem;
+            color: #2c3f58;
+        }
+
+        .card-body p {
+            margin-bottom: 0.9rem;
+        }
+
+        .card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-highlight {
+            display: inline-block;
+            background: #f2f6fc;
+            border-radius: 30px;
+            padding: 0.1rem 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 450;
+            color: #1a3b5c;
+            margin: 0 0.1rem;
+            border: 1px solid #d6e0ec;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .tag {
+            background: #ecf0f6;
+            color: #254462;
+            font-size: 0.8rem;
+            border-radius: 40px;
+            padding: 0.2rem 1rem;
+            border: 1px solid #dbe2ec;
+        }
+
+        /* 页尾卡片 */
+        .footer-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin-top: 2rem;
+            border: 1px solid #e3e8ef;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .footer-card p {
+            color: #2d425b;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .footer-card .link-sentence {
+            color: #1f3a5c;
+            font-size: 1.1rem;
+            font-weight: 390;
+        }
+
+        .footer-card .link-sentence a {
+            color: #1a4a7a;
+            text-decoration: none;
+            font-weight: 470;
+            border-bottom: 1px solid #aac2dd;
+            padding-bottom: 1px;
+            transition: border 0.1s;
+        }
+
+        .footer-card .link-sentence a:hover {
+            border-bottom-color: #1a4a7a;
+        }
+
+        .footer-meta {
+            font-size: 0.8rem;
+            color: #7a8b9f;
+            margin-top: 1rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce3ec;
+            margin: 1.2rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 670px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+            .hero {
+                padding: 1.8rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .card-title {
+                font-size: 1.15rem;
+            }
+            .footer-card {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 首页横幅 -->
+    <div class="hero">
+        <h1>竞彩 · 数据参照</h1>
+        <div class="sub">杂志专题 · 日常查询 / 对照 / 延伸阅读</div>
+        <p>
+            从赛前指数到赛后复盘，从联赛分布到主流玩法——<br>
+            一份用于快速检索、对比与背景扩展的轻量指南。
+        </p>
+    </div>
+
+    <!-- 三段自然介绍卡片区 -->
+    <div class="card-grid">
+
+        <!-- 卡片1：日常查询 · 基础参照 -->
+        <div class="card">
+            <div class="card-title">
+                ⚡ 日常查询 · 基础参照
+                <span>速览</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    在分析一场赛事前，多数人会先确认<span class="stat-highlight">让球/受让</span>、
+                    <span class="stat-highlight">胜平负</span>以及<span class="stat-highlight">总进球</span>三项核心数据。
+                    这些指标构成最直接的赛前参照系，也是后续延伸阅读的起点。通过列表式对照，
+                    可以快速定位特定联赛（英超、西甲、日职、韩K等）的即时分布。
+                </p>
+                <p>
+                    除基础玩法外，半全场、比分、混合过关等选项也常出现在查询序列中。
+                    将相同场次的不同玩法并列排列，有助于观察市场预期方向的一致性。
+                    比如让球幅度与胜平赔率之间的联动关系，在部分联赛中呈现出规律性。
+                </p>
+                <div class="tag-list">
+                    <span class="tag">让球/受让</span>
+                    <span class="tag">胜平负</span>
+                    <span class="tag">总进球</span>
+                    <span class="tag">半全场</span>
+                    <span class="tag">比分</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 卡片2：对照 · 数据交叉验证 -->
+        <div class="card">
+            <div class="card-title">
+                🔍 对照 · 数据交叉验证
+                <span>方法</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    多平台之间的细微差异往往是分析切入点。同一场比赛，不同数据源在
+                    <strong>初赔与即时赔率</strong>、<strong>凯利指数</strong>以及
+                    <strong>必发/交易所</strong>的分布上可能出现偏离。此时，建立一份个人对照表
+                    比单纯依赖单一数字更有效。建议记录：主胜离散度、平局集中度、客胜异动。
+                </p>
+                <p>
+                    另一种对照方式是将历史同赔（相同初始组合）与当前场次进行比对。
+                    虽然历史不会简单重复，但概率分布与极端值区域值得留意。
+                    例如近三个赛季某主流欧赔组合下，主胜发生率、平局占比、客胜冷门概率。
+                </p>
+                <p>
+                    对于特殊赛事（杯赛决赛、升降级附加赛、国家队比赛日），样本量通常较少，
+                    此时跨赛季、跨联赛的相似场景对照可能提供额外视角。
+                </p>
+            </div>
+        </div>
+
+        <!-- 卡片3：延伸阅读 · 背景与趋势 -->
+        <div class="card">
+            <div class="card-title">
+                📘 延伸阅读 · 背景与趋势
+                <span>专题</span>
+            </div>
+            <div class="card-body">
+                <p>
+                    单场数据之外的联赛环境、球队阵容周期、教练战术偏好等因素，
+                    往往构成“数字背后的逻辑”。例如：英超中下游球队在赛季末段的抢分节奏，
+                    日职联双赛下的轮换深度，以及南美联赛主场高原效应等。
+                </p>
+                <p>
+                    延伸阅读还包括联赛规则变动（如中超外援政策、J联赛升降级名额调整）、
+                    转会窗口对即战力影响、以及国家队征召对俱乐部赛事的连锁反应。
+                    将这些背景信息与基础数据结合，有助于形成更立体的判断框架。
+                </p>
+                <p>
+                    FAQ摘要：<br>
+                    <span style="background: #eef2f7; border-radius: 30px; padding:0.05rem 0.7rem;">Q: 如何快速定位冷门场次？</span> 
+                    通常关注凯利指数异常、交易所大单涌入、以及赔率逆向调整。<br>
+                    <span style="background: #eef2f7; border-radius: 30px; padding:0.05rem 0.7rem;">Q: 哪些联赛值得深入跟踪？</span> 
+                    欧洲五大联赛、日职、韩K、澳超、美职联等因其数据透明度高、样本量大而适合。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 (包含精确的a标签) -->
+    <div class="footer-card">
+        <p class="link-sentence">
+            若需查阅即时赛程、赔率变化与完整对阵数据，可前往
+            <a href="https://wap-portal-jingcai.com">竞彩网</a>
+            进行多维度浏览。
+        </p>
+        <p style="color:#4c6079; font-size:0.95rem; margin-top:0.4rem;">
+            页面提供联赛分类、数据排序及快速筛选，适合日常对照与延伸检索。
+        </p>
+        <hr>
+        <div class="footer-meta">
+            杂志专题 · 信息参考 · 数据来源独立整理
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
